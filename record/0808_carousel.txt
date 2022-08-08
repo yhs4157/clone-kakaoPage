@@ -1,0 +1,32 @@
+무한 슬라이딩 캐러셀을 만들어야한다. 
+
+특징
+1. class는 slick-slide, slick-cloned, slick-center, slick-active, slick-current로 구성
+2. 모든 페이지가 존재하나 hidden=true를 통해서 통제한다. 
+3. data-index: 0-11은 기본 페이지, data-index: 12-23은 클론 페이지, -2는 11번째 페이지, -1는 12번째 페이지이다. 
+4. 무한 슬라이딩을 위해 필요한 값으로 추측된다. 
+
+다른 사람 구현 확인
+1. div로 구현한 사람도 보이지만 ul, li로 구현하는 것이 좋아 보인다. 
+2. 슬라이딩 애니메이션은 transform으로 구현하는 듯 하다. 
+
+구현 순서
+1. 시간마다 움직이는 슬라이드 판 만들기
+2. 버튼을 통해 시간 관계없이 작동하는 판 만들기
+3. 해당 img를 통해 움직이는 page 추가하기 
+
+asset
+1번 : https://dn-img-page.kakao.com/download/resource?kid=LmC3Q/hzHNBBZo3R/VKRJNpSNSEsxJ7Vtg9H2Qk
+2번 : https://dn-img-page.kakao.com/download/resource?kid=c0YCvp/hzCs95RCUG/kaJkKpTwLEFBldyuUwzWLk
+3번 : https://dn-img-page.kakao.com/download/resource?kid=SPW2H/hzHNFj5DfJ/tX7RAKW9uxL07iBR6ulvD1
+4번 : https://dn-img-page.kakao.com/download/resource?kid=bFeThc/hzHNyL2Sm6/bXcsnVYLFdTwPPnrRogtiK
+5번 : https://dn-img-page.kakao.com/download/resource?kid=4gzDf/hzCtgKHA4R/pU9cS1SV376K7j54BHkF61
+6번 : https://dn-img-page.kakao.com/download/resource?kid=cNYqDX/hzCtgKHGgc/AgtpwGvpLRtA2BFqkTenk0
+7번 : https://dn-img-page.kakao.com/download/resource?kid=btODPG/hzHNyFgQrB/xKPOl0kvCDIn19XewKGVwK
+8번 : https://dn-img-page.kakao.com/download/resource?kid=bMSm1i/hzCtdtGVDn/dSSlk1zD2dcOvm3XYmBGmk
+9번 : https://dn-img-page.kakao.com/download/resource?kid=p2TF6/hzHNBvevEq/ay3KYOGQypvTFywoXfc6EK
+10번 : https://dn-img-page.kakao.com/download/resource?kid=b9Xt6/hzHNzjSEAe/kQ1KUB6eatkqGPhdy1wIsK 
+11번 : https://dn-img-page.kakao.com/download/resource?kid=ehXtBd/hzCtdf0VcP/XVukwa8lcIIb99GtMmsSxK
+12번 : https://dn-img-page.kakao.com/download/resource?kid=c6sUlt/hzHNv2QdkT/rCDIuhaBpUkDivVGhCj3R1
+
+잘 정리해서 쓸수 있도록 하자. 
