@@ -1,95 +1,28 @@
-window.onload = () => {
-    console.log("push onload"); 
 
-    const main = document.querySelector("main")
-
-    //* 경로에 맞는 콘텐츠 렌더
-    const renderContents = () => {
-        console.log("renderContets");
-
-        const { pathname } = window.location
-        switch (pathname) {
-            case "/some":
-                main.innerHTML =
-                    "<div><button type='button'>move to /some</button></div>"
-
-                const button = document.querySelector("button")
-                button.addEventListener("click", () => {
-                    const targetUrl = "/some"
-                    const { pathname, search } = window.location
-
-                    //* 같은 URL 은 스택에 추가하지 않는다
-                    if (targetUrl === `${pathname}${search}`) {
-                        return
-                    }
-
-                    const locationChangeEvent = new CustomEvent(
-                        "locationchange",
-                        {
-                            composed: true,
-                            detail: { href: targetUrl },
-                        }
-                    )
-
-                    //* 주소변경 이벤트 Dispatch
-                    window.dispatchEvent(locationChangeEvent)
-                })
-                break
-            default:
-                main.innerHTML = "<div>404</div>"
-        }
-    };
-
-    const handleLocationChange = (e) => {
-        console.log("handleLocationChange");
-
-        const { href } = e.detail
-        console.log(href); 
-
-        //* 주소변경
-        window.history.pushState(undefined, "타이틀", href)
-        //* 콘텐츠 렌더링
-        renderContents()
-    };
-
-    //* locationchange 이벤트리스너
-    window.addEventListener("locationchange", handleLocationChange);
-
-    main.innerHTML = "<div><button type='button'>move to /some</button></div>";
-
-    const button = document.querySelector("button");
-
-    button.addEventListener("click", () => {
-        console.log("addEventListener");
-
-        const targetUrl = "/some?foo=bar"
-        const { pathname, search } = window.location
-
-        //* 같은 URL 은 스택에 추가하지 않는다
-        if (targetUrl === `${pathname}${search}`) {
-            return
-        }
-
-        const locationChangeEvent = new CustomEvent("locationchange", {
-            composed: true,
-            detail: { href: targetUrl },
-        })
-
-        //* 주소변경 이벤트 Dispatch
-        window.dispatchEvent(locationChangeEvent)
-    });
-
-    window.addEventListener("popstate", () => {
-        console.log("add popstate");
-        renderContents()
-    });
+const route = event => {
+    event = event || window.event; 
+    // Internet Explorer에는 event가 존재하지 않아 필요한 문법. 
+    event.preventDefault();
+    // button에서는 submit을 막는다. 
+    window.history.pushState({}, "", event.target.href);
+    handleLocation(); 
 }
 
+const routes = {
+    404: "/pages/404.html",
+    "/": "/pages/index.html",
+    "/about": "/pages/about.html",
+    "/lorem": "/pages/lorem.html",
+}
 
-/**
- * history API
- * popstate event
- * custom event
- * 를 사용하여 제작하게 된다. 
- * 
- */
+const handleLocation = async () => {
+    const path = window.location.pathname; 
+    const route = routes[path] || routes[404]; 
+    const html = await fetch(route).then((data) => data.text()); 
+    document.getElementById("main-page").innerHTML = html; 
+}
+
+window.onpopstate = handleLocation; 
+window.route = route; 
+
+handleLocation(); 
