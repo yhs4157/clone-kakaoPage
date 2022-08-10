@@ -1,0 +1,20 @@
+1. 720px만큼 x로 이동함. 근데 왜 transform: translate3d를 사용한 것인지는 의문. 
+
+2. 
+#test {
+    animation: moveToRight 1s ease-in-out;
+    animation-delay: 10ms;
+}
+
+@keyframes moveToRight {
+    0% {
+        transform: translateX(0px);
+    }
+    100% {
+        transform: translateX(500px);
+    }
+}
+처음 사용해본 애니메이션 예시로 중요한 것은 animation 선언과 frame을 언급하는 것으로 보인다. 
+※ 중요한 것은 좌표적인 움직임을 생각해두는 것이다. 
+
+3. 그림 width: 660px, height: 440px

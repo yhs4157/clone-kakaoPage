@@ -1,0 +1,38 @@
+.hidden {
+  display: none;
+}
+#top-carousel {
+  left: -200px;
+  transition: 1s;
+}
+h1 {
+  transform: translateX(0);
+}
+h1:hover {
+  transfrom: translateX(-100px);
+}
+
+#test {
+  animation: moveToRight 1s ease-in-out;
+  animation-delay: 10ms;
+}
+
+ul {
+  overflow: hidden;
+}
+
+li .left {
+  transform: translateX(-660px, 0);
+}
+@keyframes moveToRight {
+  0% {
+    transform: translateX(0px);
+  }
+  100% {
+    transform: translateX(500px);
+  }
+}
+
+/*
+transition : -webkit-transform 300ms ease 0s
+*/

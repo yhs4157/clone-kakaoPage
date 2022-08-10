@@ -21,8 +21,6 @@ const li_arr = ImgArr.map((ele) => {
     const img = document.createElement('img'); 
     img.src = ele; 
     li.appendChild(img); 
-    li.dataset.index = count;  
-    count++; 
     li.classList.add('hidden');
     return li; 
     }
@@ -30,24 +28,75 @@ const li_arr = ImgArr.map((ele) => {
 
 console.log(li_arr); 
 
-
 let temp = 0; 
 li_arr[temp].classList.remove('hidden'); 
 
 const button = document.createElement('button'); 
-button.innerHTML = '다음'; 
+button.innerHTML = '다음';
+/*
 button.onclick = event => {
     event.preventDefault();
-    console.log('버튼'); 
-    li_arr[temp].classList.add('hidden'); 
+    li_arr[temp].classList.toggle('left'); 
+    li_arr[temp].classList.toggle('hidden');
     temp++;
     temp %= li_arr.length; 
-    li_arr[temp].classList.remove('hidden'); 
+    // li_arr[temp].classList.toggle('hidden');
+
+    console.log(selected);
+    selected += 1;
+    setTransition('transform 0.3s linear');
+    setTranslate({ index: selected });
+    if (selected > lastIndex) {
+        selected = 0;
+        setTimeout(() => {
+        setTransition('');
+        setTranslate({ index: selected });
+        }, 300);
+    }
+    if (selected <= lastIndex) {
+        li_arr
+    }
+}
+*/
+// value값으로 style.transition 지정
+
+const setTransition = (value) => {
+    ul.style.transition = value;
+};
+
+// index를 통해 위치를 조정하는 것. 
+const setTranslate = ({ index, reset }) => {
+    if (reset) ul.style.transform = `translate(-${ul.clientWidth}px, 0)`;
+    else ul.style.transform = `translate(-${(index + 1) * ul.clientWidth}px, 0)`;
+};
+
+let selected = 0; 
+let lastIndex = li_arr.length -1; 
+
+button.onclick = event => {
+    event.preventDefault();
+    console.log(selected);
+    selected += 1;
+    setTransition('transform 0.3s linear');
+    setTranslate({ index: selected });
+    if (selected > lastIndex) {
+        selected = 0;
+        setTimeout(() => {
+            setTransition('');
+            setTranslate({ index: selected });
+        }, 300);
+    }
+    if (selected <= lastIndex) {
+        li_arr[selected].classList.toggle('hidden'); 
+    }
 }
 
 li_arr.forEach((ele) => {
     ul.appendChild(ele); 
 })
+
+
+
 
 const carousel = document.querySelector('#top-carousel');
 
